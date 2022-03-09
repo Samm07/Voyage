@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:voyage/Widgets/CenteredView/centeredView.dart';
 import 'package:voyage/Widgets/Hero/HeroDesktop.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:voyage/Widgets/BottomNavBar/BottomNavBarDesktop.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:voyage/Widgets/BottomNavBar/BottomNavBarMobile.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -20,68 +23,14 @@ class HomeScreen extends StatelessWidget {
         children: [
           CenteredView(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  HeroDesktop(),
-                ],
-              ),
+              child: HeroDesktop(),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBar(),
-    );
-  }
-}
-
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.symmetric(horizontal: 100),
-      height: 40,
-      width: MediaQuery.of(context).size.width,
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          BottomNavBarItem(
-            title: 'Terms of Service',
-          ),
-          BottomNavBarItem(
-            title: 'About',
-          ),
-          BottomNavBarItem(
-            title: 'Privacy Policy',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BottomNavBarItem extends StatelessWidget {
-  BottomNavBarItem({required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 150),
-      child: Text(
-        '$title',
-        style: TextStyle(
-          fontSize: 17,
-          color: Colors.black54,
-          fontWeight: FontWeight.w500,
-        ),
+      bottomNavigationBar: ScreenTypeLayout(
+        mobile: BottomNavBarMobile(),
+        desktop: BottomNavBarDesktop(),
       ),
     );
   }
