@@ -40,22 +40,27 @@ class GenerateButton extends StatelessWidget {
               ? MediaQuery.of(context).size.width - 20
               : 320;
 
-      return Container(
-        width: width,
-        margin: EdgeInsets.symmetric(vertical: 30),
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 90),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-        ),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Generate',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: textSize,
-              fontWeight: FontWeight.w500,
+      return GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/inter');
+        },
+        child: Container(
+          width: width,
+          margin: EdgeInsets.symmetric(vertical: 30),
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(7)),
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Generate',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: textSize,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),

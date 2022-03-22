@@ -12,14 +12,20 @@ class BottomNavBarMobile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          BottomNavBarItemMobile(
-            title: 'Terms of Service',
+          Expanded(
+            child: BottomNavBarItemMobile(
+              title: 'Terms of Service',
+            ),
           ),
-          BottomNavBarItemMobile(
-            title: 'About',
+          Expanded(
+            child: BottomNavBarItemMobile(
+              title: 'About',
+            ),
           ),
-          BottomNavBarItemMobile(
-            title: 'Privacy Policy',
+          Expanded(
+            child: BottomNavBarItemMobile(
+              title: 'Privacy Policy',
+            ),
           ),
         ],
       ),
@@ -34,7 +40,7 @@ class BottomNavBarItemMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 40),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: Text(
         '$title',
         style: TextStyle(

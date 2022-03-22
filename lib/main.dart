@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Screens/HomeScreen/HomeScreen.dart';
+import 'Screens/IntermediateScreen/IntermediateScreen.dart';
+import 'Screens/UnAuthScreen/UnAuthScreen.dart';
+import 'Screens/VoyageScreen/VoyageScreenDesktop.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Voyage',
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: HomeScreen(),
+      initialRoute: '/voyage',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/inter': (context) => const IntermediateScreen(),
+        '/unauth': (context) => const UnAuthScreen(),
+        '/voyage': (context) => VoyageScreenDesktop(),
+      },
     );
   }
 }
