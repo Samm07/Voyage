@@ -10,7 +10,9 @@ class VoyageScreenDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double heroHeight = 0.60 * screenHeight;
+    double heroHeight = 0.70 * screenHeight;
+    double stripHeight = 0.30 * screenHeight;
+    double stripWidth = 2000;
 
     return Scaffold(
         body: CenteredView2(
@@ -18,12 +20,146 @@ class VoyageScreenDesktop extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           HeroVoyage(screenHeight: screenHeight),
-          Container(height: 0.40 * screenHeight, color: Colors.white),
-          Container(height: 300, color: Color.fromARGB(255, 29, 29, 29)),
-          Container(height: 300, color: Colors.yellow),
+          CreatedStrip(stripHeight: stripHeight),
+          SubStrip(stripHeight: stripHeight),
+          SubStrip(stripHeight: stripHeight),
+          SubStrip(stripHeight: stripHeight),
         ],
       ),
     )));
+  }
+}
+
+class SubStrip extends StatelessWidget {
+  const SubStrip({
+    Key? key,
+    required this.stripHeight,
+  }) : super(key: key);
+
+  final double stripHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: stripHeight,
+      color: Color.fromARGB(255, 29, 29, 29),
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Positioned(
+            child: Container(
+              // margin: EdgeInsets.only(top: 120),
+              child: null,
+              height: (stripHeight),
+              width: 15,
+              color: Colors.red,
+            ),
+          ),
+          CircleAvatar(
+            radius: 60,
+            foregroundImage: Image.network(
+                    'https://www.nme.com/wp-content/uploads/2021/07/bts-jungkook-big-hit-music-facebook-260721-e1627282234489-696x442.jpg')
+                .image,
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 450, 45),
+              child: Text(
+                'Subscribed to',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100),
+              ),
+            ),
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.only(right: 450),
+              child: Text(
+                'BTS',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.only(left: 450),
+              child: Text(
+                '12th Sep 2020',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CreatedStrip extends StatelessWidget {
+  const CreatedStrip({
+    Key? key,
+    required this.stripHeight,
+  }) : super(key: key);
+
+  final double stripHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: stripHeight,
+      color: Colors.white,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Positioned(
+            child: Container(
+              margin: EdgeInsets.only(top: 120),
+              child: null,
+              height: (stripHeight / 2),
+              width: 15,
+              color: Colors.red,
+            ),
+          ),
+          CircleAvatar(
+            radius: 60,
+            foregroundImage: Image.network(
+                    'https://www.nme.com/wp-content/uploads/2021/07/bts-jungkook-big-hit-music-facebook-260721-e1627282234489-696x442.jpg')
+                .image,
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.only(right: 450),
+              child: Text(
+                'Created account',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.only(left: 450),
+              child: Text(
+                '12th Sep 2013',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -60,20 +196,26 @@ class HeroVoyage extends StatelessWidget {
             ),
             Positioned(
               bottom: 0.10 * (0.60 * screenHeight),
-              child: Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.replay,
-                    size: 30,
-                    color: Colors.red,
+              child: GestureDetector(
+                onTap: () {
+                  print('pressed');
+                  Navigator.pushNamed(context, '/');
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 50),
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.replay,
+                      size: 30,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
               ),
